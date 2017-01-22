@@ -1,4 +1,4 @@
-function varargout = untilted(varargin)
+function varargout = untitled(varargin)
 % UNTITLED MATLAB code for untitled.fig
 %      UNTITLED, by itself, creates a new UNTITLED or raises the existing
 %      singleton*.
@@ -43,6 +43,9 @@ else
     gui_mainfcn(gui_State, varargin{:});
 end
 % End initialization code - DO NOT EDIT
+
+
+
 
 
 % --- Executes just before untitled is made visible.
@@ -113,9 +116,28 @@ disp('start')
 fid=fopen(strcat(PathName, FileName), 'r');
 C = textscan(fid, '%s', 'Delimiter', '');
 fclose(fid);
-celldisp(C)
+printColumn(C,'PH')
 %conductivity = (e^2/(kB*T))exp
 
+function printColumn(C,needle)
+PH='ph';
+TIME='t';
+CONDUCTIVITY = 'cond';
+TPERMIN = 't/m';
+maxColumn = 3;
+headerCell = strsplit(C{1}{1})
+%disp(headerCell)
+needleIndex = -1;
+for hCellIndex = 0:size(headerCell)
+    if strcmp(lower(needle),lower( headerCell{(hCellIndex+1)} ) )   
+        needleIndex = (hCellIndex+1)
+    end
+end
+disp(needleIndex)
+for i = 0:size(C)
+    %rowValue = strsplit(C{(i+1)}{1})
+    %disp(rowValue{needleIndex})
+end
 
 
 % --- Executes during object creation, after setting all properties.
