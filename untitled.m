@@ -1,4 +1,4 @@
-function varargout = untitled(varargin)
+function varargout = untilted(varargin)
 % UNTITLED MATLAB code for untitled.fig
 %      UNTITLED, by itself, creates a new UNTITLED or raises the existing
 %      singleton*.
@@ -22,7 +22,7 @@ function varargout = untitled(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 15-Jan-2017 20:34:05
+% Last Modified by GUIDE v2.5 22-Jan-2017 01:39:57
 
 % Begin initialization code - DO NOT EDIT
 
@@ -192,3 +192,19 @@ function edit4_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton3.
+function pushbutton3_Callback(hObject, eventdata, ~)
+% hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+[FileName,PathName,FilterIndex] = uigetfile('*.txt');
+fid=fopen(strcat(PathName, FileName), 'r');
+C = textscan(fid, '%s', 'Delimiter', '');
+header={'time' 'pH'} % headers for the file
+T = readtable('test_pH.txt')
+%M=[header;num2cell(C)]
+fprintf(fid, '%f  %f\n', fid);
+fclose(fid);
+%disp(C)
