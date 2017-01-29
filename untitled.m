@@ -22,7 +22,7 @@ function varargout = untitled(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 28-Jan-2017 15:05:54
+% Last Modified by GUIDE v2.5 29-Jan-2017 11:29:42
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -125,34 +125,9 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-disp('load conductivity data')
-disp('start')
-[FileName,PathName,FilterIndex] = uigetfile('*.txt');
-fid=fopen(strcat(PathName, FileName), 'r');
-C = textscan(fid, '%s', 'Delimiter', '');
-fclose(fid);
-printColumn(C,'PH')
-%conductivity = (e^2/(kB*T))exp
-
 function printColumn(C,needle)
-PH='ph';
-TIME='t';
-CONDUCTIVITY = 'cond';
-TPERMIN = 't/m';
-maxColumn = 3;
-headerCell = strsplit(C{1}{1})
-%disp(headerCell)
-needleIndex = -1;
-for hCellIndex = 0:size(headerCell)
-    if strcmp(lower(needle),lower( headerCell{(hCellIndex+1)} ) )   
-        needleIndex = (hCellIndex+1)
-    end
-end
-disp(needleIndex)
-for i = 0:size(C)
-    %rowValue = strsplit(C{(i+1)}{1})
-    %disp(rowValue{needleIndex})
-end
+
+
 
 
 % --- Executes during object creation, after setting all properties.
@@ -236,16 +211,19 @@ function pushbutton3_Callback(hObject, eventdata, ~)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-[FileName,PathName,FilterIndex] = uigetfile('*.txt');
-fid=fopen(strcat(PathName, FileName), 'r');
-C = textscan(fid, '%s', 'Delimiter', '');
-header={'time' 'pH'} % headers for the file
-T = readtable('test_pH.txt')
-%M=[header;num2cell(C)]
-fprintf(fid, '%f  %f\n', fid);
-fclose(fid);
-%disp(C)
+getCellData('aa_bb_cc');
 
+%[FileName,PathName,FilterIndex] = uigetfile('*.txt');
+%fid=fopen(strcat(PathName, FileName), 'r');
+%C = textscan(fid, '%s', 'Delimiter', '');
+%header={'time' 'pH'} % headers for the file
+%T = readtable('test_pH.txt')
+%M=[header;num2cell(C)]
+%fprintf(fid, '%f  %f\n', fid);
+%fclose(fid);
+%disp(C{1})
+
+    
 
 % --- Executes on button press in pushbutton4.
 function main(hObject, eventdata, handles)
@@ -257,4 +235,57 @@ flowrt = str2num(param.flow_rate.String);
 mnemass = param.mean_electrode_mass.String;
 phdelay = param.ph_delay.String;
 condelay = param.con_delay.String;
+
+
+% --- Executes on selection change in popupmenu2.
+function popupmenu2_Callback(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns popupmenu2 contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from popupmenu2
+
+
+% --- Executes during object creation, after setting all properties.
+function popupmenu2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to popupmenu2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in pushbutton5.
+function clickGetConductivity(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+getCellData('meam_ph');
+
+% --- Executes on button press in pushbutton6.
+function clickGetEC(hObject, eventdata, handles)
+% hObject    handle to pushbutton6 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+getCellData('ph_cnd')
+
+function getCellData(tabname)
+[FileName,PathName,FilterIndex] = uigetfile('*.txt');
+%fid=fopen(strcat(PathName, FileName), 'r');
+%C = textscan(fid, '%s', 'Delimiter', '');
+PH='ph';
+TIME='t';
+CONDUCTIVITY = 'cond';
+TPERMIN = 't/m';
+maxColumn = 3;
+td = tdfread(strcat(PathName, FileName),',')
+allRow = td.ph_bb_cc;
+%headerRow = allRow(1);
+disp(allRow);
+
 
