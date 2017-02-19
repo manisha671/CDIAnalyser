@@ -211,9 +211,10 @@ function pushbutton3_Callback(hObject, eventdata, ~)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-getCellData('aa_bb_cc');
+%getCellData('aa_bb_cc');
 
-%[FileName,PathName,FilterIndex] = uigetfile('*.txt');
+[FileName,PathName,FilterIndex] = uigetfile('*.csv');
+readPhFile(strcat(PathName, FileName));
 %fid=fopen(strcat(PathName, FileName), 'r');
 %C = textscan(fid, '%s', 'Delimiter', '');
 %header={'time' 'pH'} % headers for the file
@@ -283,9 +284,7 @@ TIME='t';
 CONDUCTIVITY = 'cond';
 TPERMIN = 't/m';
 maxColumn = 3;
-td = tdfread(strcat(PathName, FileName),',')
-allRow = td.ph_bb_cc;
-%headerRow = allRow(1);
-disp(allRow);
+td =dlmread(strcat(PathName, FileName),'\t')
+disp(td(3,1));
 
 
