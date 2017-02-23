@@ -22,7 +22,7 @@ function varargout = untitled(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 29-Jan-2017 11:29:42
+% Last Modified by GUIDE v2.5 22-Feb-2017 21:12:15
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -207,24 +207,16 @@ end
 
 
 % --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, ~)
+function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%getCellData('aa_bb_cc');
 
 [FileName,PathName,FilterIndex] = uigetfile('*.csv');
-readPhFile(strcat(PathName, FileName));
-%fid=fopen(strcat(PathName, FileName), 'r');
-%C = textscan(fid, '%s', 'Delimiter', '');
-%header={'time' 'pH'} % headers for the file
-%T = readtable('test_pH.txt')
-%M=[header;num2cell(C)]
-%fprintf(fid, '%f  %f\n', fid);
-%fclose(fid);
-%disp(C{1})
-
-    
+ph_delay = str2num(get(handles.ph_delay, 'String'));
+outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
+set(findobj('Tag','output'),'String',outputOfread)
+%makeTable();  
 
 % --- Executes on button press in pushbutton4.
 function main(hObject, eventdata, handles)
@@ -288,3 +280,49 @@ td =dlmread(strcat(PathName, FileName),'\t')
 disp(td(3,1));
 
 
+
+
+
+function output_Callback(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of output as text
+%        str2double(get(hObject,'String')) returns contents of output as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function output_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function edit8_Callback(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of output as text
+%        str2double(get(hObject,'String')) returns contents of output as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit8_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to output (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
