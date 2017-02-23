@@ -40,9 +40,14 @@ for ii=var
             phValue = double(phValueString);
             valueK = 10^(-1 * (phValue + (currentPosition/60)));
             goalValue = J * ((valueK * valueL)+ (valueM/(valueK * N)) ); 
-            goalValueStr = string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)});
-            OutputText = strcat(OutputText, goalValueStr);
-            OutputText = strcat(OutputText, '   ');
+            %goalValueStr = string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)});
+            OutputText = strcat(OutputText, ' S/No= ');
+            OutputText = strcat(OutputText, num2str(iterate));
+            OutputText = strcat(OutputText, ' PH= ');
+            OutputText = strcat(OutputText, num2str(phValue));
+            OutputText = strcat(OutputText, ' VALUE= ');
+            OutputText = strcat(OutputText, num2str(goalValue));
+            OutputText = strcat(OutputText, '___');
             disp(   string({'PH : ' phValue ' Output : ' goalValue}));
         elseif iterate <= delay && ( string(ii(1)) == 'value')
            	%OutputText = strcat(OutputText, 'skip');
@@ -51,5 +56,5 @@ for ii=var
     end
     mainOutputText = strcat(mainOutputText,OutputText);
 end
-readPhFile = cellstr(mainOutputText);
+readPhFile = mainOutputText;
 

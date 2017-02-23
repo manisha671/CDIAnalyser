@@ -215,6 +215,7 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 [FileName,PathName,FilterIndex] = uigetfile('*.csv');
 ph_delay = str2num(get(handles.ph_delay, 'String'));
 outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
+disp(outputOfread);
 set(findobj('Tag','output'),'String',outputOfread)
 %makeTable();  
 
