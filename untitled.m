@@ -22,7 +22,7 @@ function varargout = untitled(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 22-Feb-2017 21:12:15
+% Last Modified by GUIDE v2.5 26-Feb-2017 12:21:45
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -124,6 +124,15 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+[FileName,PathName,FilterIndex] = uigetfile('*.*');
+con_delay = str2num(get(handles.con_delay, 'String'));
+%makeTable();
+outputOfread = readConFile(strcat(PathName, FileName),con_delay);
+disp(outputOfread);
+set(findobj('Tag','output'),'String',outputOfread)
+
+
+
 
 function printColumn(C,needle)
 
@@ -212,7 +221,7 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-[FileName,PathName,FilterIndex] = uigetfile('*.csv');
+[FileName,PathName,FilterIndex] = uigetfile('*.*');
 ph_delay = str2num(get(handles.ph_delay, 'String'));
 outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
 disp(outputOfread);
@@ -327,3 +336,15 @@ function edit8_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+[FileName,PathName,FilterIndex] = uigetfile('*.*');
+outputOfread = readECFile(strcat(PathName, FileName));
+disp(outputOfread);
+set(findobj('Tag','output'),'String',outputOfread)
