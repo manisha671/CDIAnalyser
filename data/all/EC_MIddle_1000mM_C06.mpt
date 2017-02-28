@@ -59,7 +59,8 @@ I Range max         Unset               Unset
 I Range init        Unset               Unset               
 Bandwidth           8                   8                   
 goto Ns'            0                   0                   
-nc cycles           0                   3                   
+nc cycles           0                   3   
+
 
 mode	ox/red	error	control changes	Ns changes	counter inc.	Ns	time/s	control/V	Ewe/V	I/mA	dq/mA.h	(Q-Qo)/mA.h	dQ/C	(Q-Qo)/C	Q charge/discharge/mA.h	half cycle	x	Q discharge/mA.h	Q charge/mA.h	Capacity/mA.h	Efficiency/%	cycle number	P/W
 2	1	0	0	0	0	0	0.000000000000000E+000	1.1999763E+000	1.2006525E+000	3.6125072E+001	0.000000000000000E+000	0.000000000000000E+000	0.0000000E+000	0.0000000E+000	0.000000000000000E+000	0	8.999999761581421E-001	0.000000000000000E+000	0.000000000000000E+000	0.000000000000000E+000	0	0.000000000000000E+000	4.3373659E-002

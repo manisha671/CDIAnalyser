@@ -225,8 +225,23 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 ph_delay = str2num(get(handles.ph_delay, 'String'));
 outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
 disp(outputOfread);
-set(findobj('Tag','output'),'String',outputOfread)
-pushbutton2_Callback(hObject, eventdata, handles)
+set(findobj('Tag','output'),'String',outputOfread);
+while(1)
+%%your code here
+choice = menu('Please load Conductivity file...','OK','Cancel');
+    if choice==1 || choice==0
+        break;  
+    end
+end
+pushbutton2_Callback(hObject, eventdata, handles);
+while(1)
+%%your code here
+choice = menu('Please load EC file...','OK','Cancel');
+    if choice==1 || choice==0
+        break;  
+    end
+end
+pushbutton5_Callback(hObject, eventdata, handles);
 
 
 %makeTable();  

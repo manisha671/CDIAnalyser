@@ -46,5 +46,7 @@ while ischar(tline)
     
 end
 
+readECFile = 'EC Calculation finished';
+
 end
 
