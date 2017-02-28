@@ -226,6 +226,9 @@ ph_delay = str2num(get(handles.ph_delay, 'String'));
 outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
 disp(outputOfread);
 set(findobj('Tag','output'),'String',outputOfread)
+pushbutton2_Callback(hObject, eventdata, handles)
+
+
 %makeTable();  
 
 % --- Executes on button press in pushbutton4.
