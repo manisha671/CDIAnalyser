@@ -6,8 +6,7 @@ data = readData;
 
 fileSize = size(data);
 
-
-mainOutputText = '';
+mainOutputText = [];
 
 ph = 1.14e-5;
 
@@ -27,7 +26,10 @@ for ii=var
             OutputText = strcat(OutputText, ' VALUE= ');
             OutputText = strcat(OutputText, num2str(goalValue));
             OutputText = strcat(OutputText, '___');
-            disp(   string({'CON : ' conValue ' Output : ' goalValue}));
+            output = string({'CON : ' conValue ' Conductivity Calibrated By PH : ' goalValue}); 
+            disp(output);
+            WriteLog(output);
+            mainOutputText = cat(1,mainOutputText ,string({goalValue}));
         elseif iterate <= delay && ( string(ii(1)) == 'value')
             conValueString = data.(ii{1})(currentPosition:currentPosition);
             conValue = double(conValueString);
@@ -41,7 +43,13 @@ for ii=var
             disp(string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)})) 
         end
     end
-    mainOutputText = strcat(mainOutputText,OutputText);
 end
+
+fid=fopen('tmp\conductivity_calculation.csv','w');
+for index = 1:size(mainOutputText)
+    fprintf(fid, '%i,%s \n', index , mainOutputText{index} );
+end
+fclose(fid);
+
 readConFile = mainOutputText;
 

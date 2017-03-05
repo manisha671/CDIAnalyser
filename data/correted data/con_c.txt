@@ -1,4 +1,4 @@
-iterate value	randomValue
+iterate	value	randomValue	anotherRandomValue
 0	0.6709	-0.0023	20.8
 1	0.6708	0.0019	20.8
 2	0.6708	-0.0055	20.8

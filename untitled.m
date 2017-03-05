@@ -22,7 +22,7 @@ function varargout = untitled(varargin)
 
 % Edit the above text to modify the response to help untitled
 
-% Last Modified by GUIDE v2.5 26-Feb-2017 12:21:45
+% Last Modified by GUIDE v2.5 05-Mar-2017 11:51:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -80,6 +80,9 @@ tm = time./60;
 setglobal();
 
 disp(e);
+WriteLog('open');
+
+
 %e
 % UIWAIT makes untitled wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -223,24 +226,32 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 
 [FileName,PathName,FilterIndex] = uigetfile('*.*');
 ph_delay = str2num(get(handles.ph_delay, 'String'));
+
+WriteLog('Reading PH File');
 outputOfread = readPhFile(strcat(PathName, FileName),ph_delay);
 disp(outputOfread);
 set(findobj('Tag','output'),'String',outputOfread);
 while(1)
-%%your code here
 choice = menu('Please load Conductivity file...','OK','Cancel');
     if choice==1 || choice==0
         break;  
+    else
+        return
     end
 end
+%READ COonduc file
+WriteLog('Reading Conductivity File');
 pushbutton2_Callback(hObject, eventdata, handles);
 while(1)
-%%your code here
 choice = menu('Please load EC file...','OK','Cancel');
     if choice==1 || choice==0
         break;  
+    else
+        return
     end
 end
+% READ EC File
+WriteLog('Reading EC File');
 pushbutton5_Callback(hObject, eventdata, handles);
 
 
@@ -270,12 +281,6 @@ function popupmenu2_Callback(hObject, eventdata, handles)
 
 % --- Executes during object creation, after setting all properties.
 function popupmenu2_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to popupmenu2 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -283,22 +288,14 @@ end
 
 % --- Executes on button press in pushbutton5.
 function clickGetConductivity(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 getCellData('meam_ph');
 
 % --- Executes on button press in pushbutton6.
 function clickGetEC(hObject, eventdata, handles)
-% hObject    handle to pushbutton6 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 getCellData('ph_cnd')
 
 function getCellData(tabname)
 [FileName,PathName,FilterIndex] = uigetfile('*.txt');
-%fid=fopen(strcat(PathName, FileName), 'r');
-%C = textscan(fid, '%s', 'Delimiter', '');
 PH='ph';
 TIME='t';
 CONDUCTIVITY = 'cond';
@@ -312,22 +309,11 @@ disp(td(3,1));
 
 
 function output_Callback(hObject, eventdata, handles)
-% hObject    handle to output (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of output as text
-%        str2double(get(hObject,'String')) returns contents of output as a double
 
 
-% --- Executes during object creation, after setting all properties.
+
+
 function output_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to output (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
@@ -335,34 +321,104 @@ end
 
 
 function edit8_Callback(hObject, eventdata, handles)
-% hObject    handle to output (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'String') returns contents of output as text
-%        str2double(get(hObject,'String')) returns contents of output as a double
 
 
-% --- Executes during object creation, after setting all properties.
 function edit8_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to output (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: edit controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
 
 
-% --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
 [FileName,PathName,FilterIndex] = uigetfile('*.*');
 outputOfread = readECFile(strcat(PathName, FileName));
 disp(outputOfread);
 set(findobj('Tag','output'),'String',outputOfread)
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+% --- Executes on selection change in graph_pop_menu_x_axis.
+function graph_pop_menu_x_axis_Callback(hObject, eventdata, handles)
+% hObject    handle to graph_pop_menu_x_axis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: contents = cellstr(get(hObject,'String')) returns graph_pop_menu_x_axis contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from graph_pop_menu_x_axis
+%axesHandle = findobj(gcf,'Tag','ph_graph');
+axesHandle = findobj('Tag','ph_graph');
+axes(axesHandle);
+switch get(handles.graph_pop_menu_x_axis,'Value')   
+  case 2
+    Array=csvread('tmp\ph_calculation.csv');
+    col1 = Array(:, 1);
+    col2 = Array(:, 2);
+    plot(col1, col2) % plot(x,y) x is iteration y is value
+  case 3
+    Array=csvread('tmp\conductivity_calculation.csv');
+    col1 = Array(:, 1);
+    col2 = Array(:, 2);
+    plot(col1, col2)
+  case 4  
+    t = linspace(-pi,pi, 350);
+    X = t .* sin( pi * sin(t)./t);
+    Y = -abs(t) .* cos( pi * sin(t)./t);
+    plot(X,Y);
+    fill(X, Y, 'r');
+   otherwise
+end
+
+
+% --- Executes during object creation, after setting all properties.
+function graph_pop_menu_x_axis_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to graph_pop_menu_x_axis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+popupMenuHandleX = findobj(gcbf,'Tag','graph_pop_menu_x_axis');
+popupMenuHandleY = findobj(gcbf,'Tag','graph_pop_menu_y_axis');
+allParameters = {'Time'
+                                ,'PH'
+                                ,'Conductivity'
+                                ,'Water Conductivity'
+                                ,'Calibrated Conductivity'
+                                ,'Concentration'
+                                ,'Total Salt Removed'
+                                ,'Capacity'};
+set(popupMenuHandleX,'String', allParameters );
+set(popupMenuHandleY,'String', allParameters );
+
+% --- Executes on selection change in graph_pop_menu_y_axis.
+function graph_pop_menu_y_axis_Callback(hObject, eventdata, handles)
+% hObject    handle to graph_pop_menu_y_axis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns graph_pop_menu_y_axis contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from graph_pop_menu_y_axis
+
+
+% --- Executes during object creation, after setting all properties.
+function graph_pop_menu_y_axis_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to graph_pop_menu_y_axis (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+popupMenuHandle = findobj(gcbf,'Tag','graph_pop_menu_y_axis');
+set(popupMenuHandle,'String', {'time','PH','Conductivity'});

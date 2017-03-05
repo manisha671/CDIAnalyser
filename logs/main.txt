@@ -1,0 +1,280 @@
+CON : 
+0.6708
+ Conductivity Calibrated By PH : 
+11874.5527
+CON : 
+0.6707
+ Conductivity Calibrated By PH : 
+12040.2193
+CON : 
+0.6707
+ Conductivity Calibrated By PH : 
+12206.886
+CON : 
+0.6707
+ Conductivity Calibrated By PH : 
+12373.5527
+CON : 
+0.6709
+ Conductivity Calibrated By PH : 
+12542.2193
+CON : 
+0.6709
+ Conductivity Calibrated By PH : 
+12708.886
+CON : 
+0.671
+ Conductivity Calibrated By PH : 
+12876.5527
+CON : 
+0.6711
+ Conductivity Calibrated By PH : 
+13044.2193
+CON : 
+0.6712
+ Conductivity Calibrated By PH : 
+13211.886
+CON : 
+0.6712
+ Conductivity Calibrated By PH : 
+13378.5527
+CON : 
+0.6712
+ Conductivity Calibrated By PH : 
+13545.2193
+CON : 
+0.6713
+ Conductivity Calibrated By PH : 
+13712.886
+CON : 
+0.6713
+ Conductivity Calibrated By PH : 
+13879.5527
+CON : 
+0.6713
+ Conductivity Calibrated By PH : 
+14046.2193
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+14213.886
+CON : 
+0.6713
+ Conductivity Calibrated By PH : 
+14379.5527
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+14547.2193
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+14713.886
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+14881.5527
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+15048.2193
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+15214.886
+CON : 
+0.6716
+ Conductivity Calibrated By PH : 
+15382.5527
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+15548.2193
+CON : 
+0.6716
+ Conductivity Calibrated By PH : 
+15715.886
+CON : 
+0.6716
+ Conductivity Calibrated By PH : 
+15882.5527
+CON : 
+0.6716
+ Conductivity Calibrated By PH : 
+16049.2193
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+16214.886
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+16381.5527
+CON : 
+0.6715
+ Conductivity Calibrated By PH : 
+16548.2193
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+16713.886
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+16880.5527
+CON : 
+0.6714
+ Conductivity Calibrated By PH : 
+17047.2193
+CON : 
+0.6713
+ Conductivity Calibrated By PH : 
+17212.886
+CON : 
+0.6712
+ Conductivity Calibrated By PH : 
+17378.5527
+CON : 
+0.6711
+ Conductivity Calibrated By PH : 
+17544.2193
+CON : 
+0.671
+ Conductivity Calibrated By PH : 
+17709.886
+CON : 
+0.6709
+ Conductivity Calibrated By PH : 
+17875.5527
+CON : 
+0.6708
+ Conductivity Calibrated By PH : 
+18041.2193
+CON : 
+0.6707
+ Conductivity Calibrated By PH : 
+18206.886
+CON : 
+0.6706
+ Conductivity Calibrated By PH : 
+18372.5527
+CON : 
+0.6706
+ Conductivity Calibrated By PH : 
+18539.2193
+CON : 
+0.6705
+ Conductivity Calibrated By PH : 
+18704.886
+CON : 
+0.6703
+ Conductivity Calibrated By PH : 
+18869.5527
+CON : 
+0.6703
+ Conductivity Calibrated By PH : 
+19036.2193
+CON : 
+0.6702
+ Conductivity Calibrated By PH : 
+19201.886
+CON : 
+0.6701
+ Conductivity Calibrated By PH : 
+19367.5527
+CON : 
+0.6699
+ Conductivity Calibrated By PH : 
+19532.2193
+CON : 
+0.6698
+ Conductivity Calibrated By PH : 
+19697.886
+CON : 
+0.6698
+ Conductivity Calibrated By PH : 
+19864.5527
+CON : 
+0.6696
+ Conductivity Calibrated By PH : 
+20029.2193
+CON : 
+0.6694
+ Conductivity Calibrated By PH : 
+20193.886
+CON : 
+0.6693
+ Conductivity Calibrated By PH : 
+20359.5527
+CON : 
+0.6691
+ Conductivity Calibrated By PH : 
+20524.2193
+CON : 
+0.6689
+ Conductivity Calibrated By PH : 
+20688.886
+CON : 
+0.6688
+ Conductivity Calibrated By PH : 
+20854.5527
+CON : 
+0.6686
+ Conductivity Calibrated By PH : 
+21019.2193
+CON : 
+0.6684
+ Conductivity Calibrated By PH : 
+21183.886
+CON : 
+0.6683
+ Conductivity Calibrated By PH : 
+21349.5527
+CON : 
+0.6681
+ Conductivity Calibrated By PH : 
+21514.2193
+CON : 
+0.6678
+ Conductivity Calibrated By PH : 
+21677.886
+CON : 
+0.6676
+ Conductivity Calibrated By PH : 
+21842.5527
+CON : 
+0.6674
+ Conductivity Calibrated By PH : 
+22007.2193
+CON : 
+0.6672
+ Conductivity Calibrated By PH : 
+22171.886
+CON : 
+0.667
+ Conductivity Calibrated By PH : 
+22336.5527
+CON : 
+0.6668
+ Conductivity Calibrated By PH : 
+22501.2193
+CON : 
+0.6665
+ Conductivity Calibrated By PH : 
+22664.886
+CON : 
+0.6663
+ Conductivity Calibrated By PH : 
+22829.5527
+CON : 
+0.666
+ Conductivity Calibrated By PH : 
+22993.2193
+CON : 
+0.6658
+ Conductivity Calibrated By PH : 
+23157.886
+CON : 
+0.6655
+ Conductivity Calibrated By PH : 
+23321.5527

@@ -1,5 +1,6 @@
 function readPhFile = readPhFile(filePath, delay)
 
+WriteLog(strcat('Reading ph file from location ',filePath));
 readData = readtable(filePath);
 var = readData.Properties.VariableNames;
 data = readData;
@@ -28,8 +29,7 @@ OH = 5.30e-9;
 
 N = NA * 1000 * OH;
 
-mainOutputText = '';
-
+mainOutputText = [];
 
 for ii=var
     OutputText = '';
@@ -47,7 +47,10 @@ for ii=var
             OutputText = strcat(OutputText, ' VALUE= ');
             OutputText = strcat(OutputText, num2str(goalValue));
             OutputText = strcat(OutputText, '___');
-            disp(   string({'PH : ' phValue ' Output : ' goalValue}));
+            output = string({'PH : ' phValue ' Water Conductivity : ' goalValue}); 
+            disp(output);
+            WriteLog(output);
+            mainOutputText = cat(1,mainOutputText ,string({goalValue}));
         elseif iterate <= delay && ( string(ii(1)) == 'value')
             phValueString = data.(ii{1})(currentPosition:currentPosition);
             phValue = double(phValueString);
@@ -58,10 +61,21 @@ for ii=var
             OutputText = strcat(OutputText, ' VALUE= ');
             OutputText = strcat(OutputText, 'SKIPPED');
             OutputText = strcat(OutputText, '___');
-            disp(string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)})) 
+            output = string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)}); 
+            disp(output);
+            WriteLog(output);
         end
     end
-    mainOutputText = strcat(mainOutputText,OutputText);
 end
-readPhFile = mainOutputText;
 
+newFileLocation = 'tmp\ph_calculation.csv';
+
+fid=fopen(newFileLocation,'w');
+
+WriteLog('Writing all PH calculations.');
+for index = 1:size(mainOutputText)
+    fprintf(fid, '%i,%s \n', index , mainOutputText{index} );
+end
+fclose(fid);
+
+readPhFile = mainOutputText;
