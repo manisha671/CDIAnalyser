@@ -7,7 +7,7 @@ data = readData;
 
 fileSize = size(data);
 
-valueM = 0.0000000000001; % ???
+valueM = 0.00000000000001 % ???
 
 e= 1.602e-19;
 
@@ -35,11 +35,11 @@ for ii=var
     OutputText = '';
     for iterate = 1:fileSize(1)
         currentPosition = iterate;
-        if iterate > delay && ( string(ii(1)) == 'pH')
+        if iterate >= delay && ( string(ii(1)) == 'pH')
             phValueString = data.(ii{1})(currentPosition:currentPosition);
             phValue = double(phValueString);
-            valueK = 10^(-phValue -(currentPosition/60));
-            goalValue = J * (((valueK * valueL)+ ((valueM/valueK) * N)) ); 
+            valueK = 10^(-phValue -((currentPosition-2)/60));
+            goalValue = J *((valueK * valueL)+(valueM/(valueK * N))); 
             OutputText = strcat(OutputText, ' S/No= ');
             OutputText = strcat(OutputText, num2str(iterate));
             OutputText = strcat(OutputText, ' PH= ');

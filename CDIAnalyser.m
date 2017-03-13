@@ -1,4 +1,4 @@
-function varargout = untitled(varargin)
+function varargout = CDIAnalyser(varargin)
 % UNTITLED MATLAB code for untitled.fig
 %      UNTITLED, by itself, creates a new UNTITLED or raises the existing
 %      singleton*.
@@ -389,13 +389,13 @@ end
 popupMenuHandleX = findobj(gcbf,'Tag','graph_pop_menu_x_axis');
 popupMenuHandleY = findobj(gcbf,'Tag','graph_pop_menu_y_axis');
 allParameters = {'Time'
-                                ,'PH'
-                                ,'Conductivity'
-                                ,'Water Conductivity'
-                                ,'Calibrated Conductivity'
-                                ,'Concentration'
-                                ,'Total Salt Removed'
-                                ,'Capacity'};
+                ,'PH'
+                ,'Conductivity'
+                ,'Water Conductivity'
+                ,'Calibrated Conductivity'
+                ,'Concentration'
+                ,'Total Salt Removed'
+                ,'Capacity'};
 set(popupMenuHandleX,'String', allParameters );
 set(popupMenuHandleY,'String', allParameters );
 
