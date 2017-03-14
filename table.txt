@@ -1,0 +1,22 @@
+T = table(time,outflowpH,conductivity,waterCon,caliCON,concentration, nschange, i/ma, capacity/mah, capacity);
+
+time -> pH data
+outflowpH -> pH data
+
+
+conductivity -> conductivity data
+
+caliCON -> calculated from concentration data ->readConFile.m
+
+concentration -> readCONCFile.m
+
+nschange -> EC data
+i/ma -> EC data
+capacity/mah -> EC data
+
+
+capacity -> readECFile.m
+
+
+
+waterCon -> calculated from pH data  -> readpHfile.m

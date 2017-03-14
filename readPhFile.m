@@ -35,12 +35,21 @@ for ii=var
     OutputText = '';
     for iterate = 1:fileSize(1)
         currentPosition = iterate;
-        if iterate >= delay && ( string(ii(1)) == 'pH');
+        outputPath = 'tmp\readPHfileOutput.dat';
+        dataMap = java.util.HashMap;
+        if iterate >= delay && ( string(ii(1)) == 'pH')
+          
             phValueString = data.(ii{1})(currentPosition:currentPosition);
             phValue = double(phValueString);
             time = (currentPosition-delay) + 1;
             valueK = 10^(-phValue - (time/60));
             waterConductivity = J *((valueK * valueL)+(valueM/(valueK * N)));
+            dataMap.put('time',currentPosition);
+            dataMap.put('phValue',phValue);
+            dataMap.put('waterConductivity',waterConductivity);
+            
+            WriteOutput(outputPath,dataMap);
+            
             %OutputText = strcat(OutputText, ' S/No= ');
             %OutputText = strcat(OutputText, num2str(iterate));
             %OutputText = strcat(OutputText, ' PH= ');
@@ -52,7 +61,7 @@ for ii=var
             %disp(output);
             %WriteLog(output);
             %mainOutputText = cat(1,mainOutputText ,string({goalValue}));
-        elseif iterate <= delay && ( string(ii(1)) == 'value')
+        elseif iterate < delay && ( string(ii(1)) == 'value')
             phValueString = data.(ii{1})(currentPosition:currentPosition);
             phValue = double(phValueString);
            	OutputText = strcat(OutputText, ' S/No= ');
@@ -64,6 +73,11 @@ for ii=var
             OutputText = strcat(OutputText, '___');
             output = string({'Skipping : ' iterate '->' data.(ii{1})(iterate:iterate)}); 
 %             disp(output);
+            dataMap.put('time',currentPosition);
+            dataMap.put('phValue',phValue);
+            WriteOutput(outputPath,dataMap);
+
+
             WriteLog(output);
         end
     end
