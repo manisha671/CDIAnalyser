@@ -9,31 +9,39 @@ fileSize = size(data);
 mainOutputText = [];
 
 waterConductivity = readWaterConFile();
-waterConcentration = readWaterConcFile();
+%waterConcentration = readWaterConcFile();
 
 for ii=var
     OutputText = '';
     for iterate = 1:fileSize(1)
         currentPosition = iterate;
+        dataMap = java.util.ArrayList;
+        outputPath = 'tmp\readCONfileOutput.dat';
+        disp(data.(ii{1})(currentPosition:currentPosition));
         if iterate >= delay && ( string(ii(1)) == 'value')
             conValueString = data.(ii{1})(currentPosition:currentPosition);
             conValue = double(conValueString)
-            waterConductivityPosition = (currentPosition-delay) + 1
+            waterConductivityPosition = (currentPosition-delay) + 1;
+            dataMap.add(strcat('time=',num2str(waterConductivityPosition)))
             if waterConductivityPosition > size(waterConductivity)
-                WriteLog('skipping reaseon: more conValue found than WaterConductivity' + waterConductivityPosition);
+                WriteLog('skipping because : more conValue found than WaterConductivity' + waterConductivityPosition);
                 break; 
             end
             waterCon = waterConductivity(waterConductivityPosition)
-            goalValue = (conValue + (currentPosition/60)- waterCon) * 10000
-
-            waterConcentrationPosition = (currentPosition-delay) + 1
-            if waterConcentrationPosition > size(waterConcentration)
-               WriteLog('skipping reaseon: more conValue found than waterConcentration' + waterConcentrationPosition);
-               break;  
-            end
-            con = waterConcentration(waterConcentrationPosition)
-            goalValue2 = (((con-4.5)/121.29)^(1/0.9826)-0.13) 
-           
+            goalValue = (  ((conValue/10) + (    (currentPosition-1)    /60))- waterCon) * 10000
+            dataMap.add(strcat('conductivityCalibrated=',num2str(goalValue)));
+             
+            %waterConcentrationPosition = (currentPosition-delay) + 1
+            %if waterConcentrationPosition > size(waterConcentration)
+            %   WriteLog('skipping reaseon: more conValue found than waterConcentration' + waterConcentrationPosition);
+            %   WriteOutput(outputPath,dataMap);
+            %   break;  
+            %end
+            %con = waterConcentration(waterConcentrationPosition)
+            %goalValue2 = (((con-4.5)/121.29)^(1/0.9826)-0.13) 
+            %dataMap.add(strcat('waterConductivityValue2=',num2str(currentPosition)));
+            WriteOutput(outputPath,dataMap);
+            
             OutputText = strcat(OutputText, ' S/No= ');
             OutputText = strcat(OutputText, num2str(iterate));
             OutputText = strcat(OutputText, ' CON= ');

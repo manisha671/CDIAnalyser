@@ -1,9 +1,7 @@
-function WriteOutput = WriteOutput(filePath, dataMap )
-
-
+function WriteOutput = WriteOutput(filePath, dataMap)
 fid=fopen(filePath,'a');
 
-fprintf( fid, '%s\n', dataMap.toString());
-
+dataToWrite = dataMap.toString();
+fprintf( fid, '%s\n', dataToWrite);
 
 WriteOutput = '';

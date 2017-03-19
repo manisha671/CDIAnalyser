@@ -9,6 +9,9 @@ dataStart = 0;
 nsChanged = 0;
 previousCapacity = 0;
 currentCapacity = 0;
+position = 1;
+
+outputPath = 'tmp\readECFileOutput.dat';
 
 while ischar(tline)
 
@@ -26,11 +29,16 @@ while ischar(tline)
         end
         
         if nsChanged == 1
+           dataMap = java.util.ArrayList;
+           dataMap.add(strcat('time=',num2str(position)));
            rowCapacityString = rowData{4};
            rowCapacity = str2num(rowCapacityString);
            currentCapacity = (rowCapacity - previousCapacity) * 3600;
            previousCapacity = rowCapacity;
+           dataMap.add(strcat('capacity=', num2str(currentCapacity)));
            disp(string({rowData{4} ' = '  currentCapacity }))
+           position = position +1 ;
+           WriteOutput(outputPath,dataMap);
         end
     end
     
