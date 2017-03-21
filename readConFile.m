@@ -23,6 +23,7 @@ for ii=var
             conValue = double(conValueString)
             waterConductivityPosition = (currentPosition-delay) + 1;
             dataMap.add(strcat('time=',num2str(waterConductivityPosition)))
+            dataMap.add(strcat('conductivity=',num2str(conValue)))
             if waterConductivityPosition > size(waterConductivity)
                 WriteLog('skipping because : more conValue found than WaterConductivity' + waterConductivityPosition);
                 break; 

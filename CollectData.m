@@ -61,18 +61,68 @@ end
           else
              allData.put(time,newMap); 
           end
-
-      
     end
 
-data = java.util.ArrayList(allData.values());
-str = char(data.toString());
-str = strrep(str,'[','');
-str = strrep(str,']','');
-str = strrep(str,'{','');
+allDataMatlab = [];
 
-str = strsplit(str,'},');
-data = readtable(str);
 
-CollectData = data;
+
+for i = 1:1000
+if allData.containsKey(num2str(i))    
+    row = char(allData.get(num2str(i)).toString());
+    row = strrep(row,'{','');
+    row = strrep(row,'}','');
+    row = strsplit(row,',');
+    
+    sizeOfRow = size(row);
+ 
+    for j = 1:sizeOfRow(2) % Each Elements in HASH MAP basically KEY=VALUE
+        graphTime = '-';
+        graphCapacity = '-';
+        graphWaterConductivity = '-';
+        graphConductivityCalibrated = '-';
+        graphPhValue = '-';
+        
+        fidGraphTimevsPH = fopen('tmp\graph-time-vs-ph.dat','a');
+        fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-conductivity.dat');
+        fidGraphTimevsCon = fopen('tmp\graph-time-vs-con.dat'); 
+        
+       keyValuePairStr = row(j);
+       keyValuePair = strsplit(string(keyValuePairStr),'=');
+       
+       if contains(keyValuePair(1),'phValue','IgnoreCase',true)
+           graphPhValue = keyValuePair(2);          
+       end
+       
+       if contains(keyValuePair(1),'capacity','IgnoreCase',true)
+           graphCapacity = keyValuePair(2);
+       end
+       
+       if contains(keyValuePair(1),'waterConductivity','IgnoreCase',true)
+           graphWaterConductivity = keyValuePair(2);       
+       end
+       
+       if contains(keyValuePair(1),'time','IgnoreCase',true)
+          graphTime = keyValuePair(2);
+       end
+       
+       if contains(keyValuePair(1),'conductivityCalibrated','IgnoreCase',true)
+         graphConductivityCalibrated = keyValuePair(2);         
+       end
+       
+       if graphTime ~= '-' && graphPhValue ~= '-'
+          fprintf( fidGraphTimevsPH , '%s,%s\n', graphTime,graphPhValue); 
+       end
+       
+        fclose(fidGraphTimevsPH);
+        fclose(fidGraphTimevsConductivity);
+        fclose(fidGraphTimevsCon);
+
+    end
+end
+   
+end
+
+CollectData = '';
+ 
 end
