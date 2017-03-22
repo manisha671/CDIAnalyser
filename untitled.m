@@ -253,8 +253,8 @@ end
 % READ EC File
 WriteLog('Reading EC File');
 pushbutton5_Callback(hObject, eventdata, handles);
-
-
+WriteLog('Generating Graph Files');
+CollectData();
 %makeTable();  
 
 % --- Executes on button press in pushbutton4.
@@ -387,8 +387,8 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 popupMenuHandleX = findobj(gcbf,'Tag','graph_pop_menu_x_axis');
 popupMenuHandleY = findobj(gcbf,'Tag','graph_pop_menu_y_axis');
-allParameters = {'NONE',
-                'PH'
+allParameters = {'NONE'
+                ,'PH'
                 ,'Conductivity'
                 ,'Water Conductivity'
                 ,'Calibrated Conductivity'

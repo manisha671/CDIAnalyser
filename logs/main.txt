@@ -1,0 +1,82 @@
+Reading PH File
+Reading ph file from locationC:\Matlab\CDIAnalyzer\data\correted data\ph_c.dat
+Writing all PH calculations.
+Reading Conductivity File
+Skipping : 
+1
+->
+0.6709
+Skipping : 
+2
+->
+0.6708
+Skipping : 
+3
+->
+0.6708
+Skipping : 
+4
+->
+0.6708
+Skipping : 
+5
+->
+0.6708
+Skipping : 
+6
+->
+0.6708
+Skipping : 
+7
+->
+0.6707
+Skipping : 
+8
+->
+0.6707
+Skipping : 
+9
+->
+0.6708
+Skipping : 
+10
+->
+0.6707
+Skipping : 
+11
+->
+0.6707
+Skipping : 
+12
+->
+0.6707
+Skipping : 
+13
+->
+0.6707
+Skipping : 
+14
+->
+0.6707
+Skipping : 
+15
+->
+0.6708
+Skipping : 
+16
+->
+0.6707
+Skipping : 
+17
+->
+0.6708
+Skipping : 
+18
+->
+0.6708
+Skipping : 
+19
+->
+0.6707
+tljqqjoh!cfdbvtf!;!npsf!dpoWbmvf!gpvoe!uibo!XbufsDpoevdujwjuz
+Reading EC File

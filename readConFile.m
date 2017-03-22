@@ -57,7 +57,7 @@ for ii=var
             WriteLog(output);
             mainOutputText = cat(1,mainOutputText ,string({goalValue}));
             WriteLog(mainOutputText);
-        elseif iterate <= delay && ( string(ii(1)) == 'value')
+        elseif iterate < delay && ( string(ii(1)) == 'value')
             conValueString = data.(ii{1})(currentPosition:currentPosition);
             conValue = double(conValueString);
            	OutputText = strcat(OutputText, ' S/No= ');
@@ -80,4 +80,3 @@ end
 fclose(fid);
 
 readConFile = mainOutputText;
-

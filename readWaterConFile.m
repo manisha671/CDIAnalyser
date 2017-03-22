@@ -12,10 +12,12 @@ while ischar(tline)
   rowData = strrep(rowData,'[','');
   rowData = strrep(rowData,']','');
   rowData = strsplit(rowData,',');
-  rowData = rowData{3};
-  rowData = strsplit(rowData,'=');
-  rowNumber = str2num(rowData{2}); 
-  waterCon = cat(1,waterCon ,rowNumber);
+  if size(rowData) > 2
+    rowData = rowData{3};
+    rowData = strsplit(rowData,'=');
+    rowNumber = str2num(rowData{2}); 
+    waterCon = cat(1,waterCon ,rowNumber);
+  end
   tline = fgets(fid);
 end
 
