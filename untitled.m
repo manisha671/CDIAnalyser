@@ -356,22 +356,21 @@ axesHandle = findobj('Tag','ph_graph');
 axes(axesHandle);
 switch get(handles.graph_pop_menu_x_axis,'Value')   
   case 2
-    Array=csvread('tmp\ph_calculation.csv');
+    Array=csvread('tmp\graph-time-vs-ph.dat');
     col1 = Array(:, 1);
     col2 = Array(:, 2);
     plot(col1, col2) % plot(x,y) x is iteration y is value
   case 3
-    Array=csvread('tmp\conductivity_calculation.csv');
+    Array=csvread('tmp\graph-time-vs-conductivity.dat');
+    col1 = Array(:, 1);
+    col2 = Array(:, 2);
+    plot(col1, col2);
+  case 4
+    Array=csvread('tmp\graph-time-vs-con.dat');
     col1 = Array(:, 1);
     col2 = Array(:, 2);
     plot(col1, col2)
-  case 4  
-    t = linspace(-pi,pi, 350);
-    X = t .* sin( pi * sin(t)./t);
-    Y = -abs(t) .* cos( pi * sin(t)./t);
-    plot(X,Y);
-    fill(X, Y, 'r');
-   otherwise
+  otherwise
 end
 
 
@@ -388,13 +387,13 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 popupMenuHandleX = findobj(gcbf,'Tag','graph_pop_menu_x_axis');
 popupMenuHandleY = findobj(gcbf,'Tag','graph_pop_menu_y_axis');
-allParameters = {'Time'
-                ,'PH'
+allParameters = {'NONE',
+                'PH'
                 ,'Conductivity'
                 ,'Water Conductivity'
                 ,'Calibrated Conductivity'
                 ,'Concentration'
-                ,'Total Salt Removed'
+                %,'Total Salt Removed'
                 ,'Capacity'};
 set(popupMenuHandleX,'String', allParameters );
 set(popupMenuHandleY,'String', allParameters );

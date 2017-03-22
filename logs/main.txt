@@ -1,4 +1,0 @@
-Reading PH File
-Reading ph file from locationC:\Matlab\CDIAnalyzer\data\correted data\ph_c.dat
-Writing all PH calculations.
-Reading Conductivity File

@@ -76,22 +76,26 @@ if allData.containsKey(num2str(i))
     
     sizeOfRow = size(row);
  
+    
+     graphTime = '0';
+     graphCapacity = '0';
+     graphWaterConductivity = '0';
+     graphConductivityCalibrated = '0';
+     graphPhValue = '-';
+    
     for j = 1:sizeOfRow(2) % Each Elements in HASH MAP basically KEY=VALUE
-        graphTime = '-';
-        graphCapacity = '-';
-        graphWaterConductivity = '-';
-        graphConductivityCalibrated = '-';
-        graphPhValue = '-';
-        
-        fidGraphTimevsPH = fopen('tmp\graph-time-vs-ph.dat','a');
-        fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-conductivity.dat');
-        fidGraphTimevsCon = fopen('tmp\graph-time-vs-con.dat'); 
+       
+        %fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-conductivity.dat');
+        %fidGraphTimevsCon = fopen('tmp\graph-time-vs-con.dat'); 
         
        keyValuePairStr = row(j);
        keyValuePair = strsplit(string(keyValuePairStr),'=');
        
+       keyValuePair(1)
+       
        if contains(keyValuePair(1),'phValue','IgnoreCase',true)
-           graphPhValue = keyValuePair(2);          
+        graphPhValue = keyValuePair(2);
+        graphPhValue = strrep( graphPhValue , sprintf('\n'),'')
        end
        
        if contains(keyValuePair(1),'capacity','IgnoreCase',true)
@@ -99,7 +103,8 @@ if allData.containsKey(num2str(i))
        end
        
        if contains(keyValuePair(1),'waterConductivity','IgnoreCase',true)
-           graphWaterConductivity = keyValuePair(2);       
+           graphWaterConductivity = keyValuePair(2);
+           graphWaterConductivity = strrep( graphWaterConductivity , sprintf('\n'),'');
        end
        
        if contains(keyValuePair(1),'time','IgnoreCase',true)
@@ -107,18 +112,27 @@ if allData.containsKey(num2str(i))
        end
        
        if contains(keyValuePair(1),'conductivityCalibrated','IgnoreCase',true)
-         graphConductivityCalibrated = keyValuePair(2);         
+         graphConductivityCalibrated = keyValuePair(2)     ; 
+         graphConductivityCalibrated = strrep( graphConductivityCalibrated , sprintf('\n'),'')
        end
        
-       if graphTime ~= '-' && graphPhValue ~= '-'
-          fprintf( fidGraphTimevsPH , '%s,%s\n', graphTime,graphPhValue); 
-       end
-       
-        fclose(fidGraphTimevsPH);
-        fclose(fidGraphTimevsConductivity);
-        fclose(fidGraphTimevsCon);
-
     end
+    
+    if graphTime ~= '0'
+           fidGraphTimevsPH = fopen('tmp\graph-time-vs-ph.dat','a');
+           fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-conductivity.dat','a');
+           fidGraphTimevsCon = fopen('tmp\graph-time-vs-con.dat','a'); 
+           
+           fprintf( fidGraphTimevsPH , '%s,%s\n', graphTime, graphPhValue); 
+           fprintf( fidGraphTimevsConductivity , '%s,%s\n', graphTime, graphWaterConductivity); 
+           fprintf( fidGraphTimevsCon , '%s,%s\n', graphTime, graphConductivityCalibrated); 
+          
+           fclose(fidGraphTimevsPH);
+           fclose(fidGraphTimevsConductivity);
+           fclose(fidGraphTimevsCon);
+   end
+    
+    
 end
    
 end
