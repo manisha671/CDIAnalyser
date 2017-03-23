@@ -36,9 +36,9 @@ for ii=var
     for iterate = 1:fileSize(1)
         currentPosition = iterate;
         outputPath = 'tmp\readPHfileOutput.dat';
+        fopen(outputPath,'w');
         dataMap = java.util.ArrayList;
         if iterate >= delay && ( string(ii(1)) == 'pH')
-          
             phValueString = data.(ii{1})(currentPosition:currentPosition);
             phValue = double(phValueString);
             time = (currentPosition-delay) + 1;
@@ -47,8 +47,7 @@ for ii=var
             dataMap.add(strcat('time=',num2str(currentPosition)));
             dataMap.add(strcat('phValue=', num2str(phValue)));
             dataMap.add(strcat('waterConductivity=', num2str(waterConductivity)) );
-            WriteOutput(outputPath,dataMap);
-            
+            WriteOutput(outputPath,dataMap);  
             %OutputText = strcat(OutputText, ' S/No= ');
             %OutputText = strcat(OutputText, num2str(iterate));
             %OutputText = strcat(OutputText, ' PH= ');
@@ -75,7 +74,6 @@ for ii=var
             dataMap.add(strcat('phValue=', num2str(phValue)));
             %WriteLog(output);
             WriteOutput(outputPath,dataMap);
-            
         end
     end
 end

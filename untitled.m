@@ -361,15 +361,19 @@ switch get(handles.graph_pop_menu_x_axis,'Value')
     col2 = Array(:, 2);
     plot(col1, col2) % plot(x,y) x is iteration y is value
   case 3
-    Array=csvread('tmp\graph-time-vs-conductivity.dat');
+    Array=csvread('tmp\graph-time-vs-water-conductivity.dat');
     col1 = Array(:, 1);
     col2 = Array(:, 2);
     plot(col1, col2);
-  case 4
+  case 6
     Array=csvread('tmp\graph-time-vs-con.dat');
+    X = Array(: , 1:1);
+    Y = Array(: , 2:2);
+    linearPolyfit = polyfit(X,Y,1);
+    plot(X, linearPolyfit(1)*X+ linearPolyfit(2));
     col1 = Array(:, 1);
     col2 = Array(:, 2);
-    plot(col1, col2)
+    plot(col1, col2) 
   otherwise
 end
 

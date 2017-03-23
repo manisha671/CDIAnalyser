@@ -12,6 +12,8 @@ currentCapacity = 0;
 position = 1;
 
 outputPath = 'tmp\readECFileOutput.dat';
+%fopen(outputPath,'w');
+%fclose(outputPath);
 
 while ischar(tline)
 

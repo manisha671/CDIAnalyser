@@ -12,7 +12,8 @@ while ischar(tline)
   rowData = strrep(rowData,'[','');
   rowData = strrep(rowData,']','');
   rowData = strsplit(rowData,',');
-  if size(rowData) > 2
+  dataSize = size(rowData);
+  if dataSize(2) > 2
     rowData = rowData{3};
     rowData = strsplit(rowData,'=');
     rowNumber = str2num(rowData{2}); 

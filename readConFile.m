@@ -15,12 +15,13 @@ for ii=var
     OutputText = '';
     for iterate = 1:fileSize(1)
         currentPosition = iterate;
-        dataMap = java.util.ArrayList;
         outputPath = 'tmp\readCONfileOutput.dat';
+        
+        dataMap = java.util.ArrayList;
         disp(data.(ii{1})(currentPosition:currentPosition));
         if iterate >= delay && ( string(ii(1)) == 'value')
             conValueString = data.(ii{1})(currentPosition:currentPosition);
-            conValue = double(conValueString)
+            conValue = double(conValueString);
             waterConductivityPosition = (currentPosition-delay) + 1;
             dataMap.add(strcat('time=',num2str(waterConductivityPosition)))
             dataMap.add(strcat('conductivity=',num2str(conValue)))
@@ -29,8 +30,10 @@ for ii=var
                 break; 
             end
             waterCon = waterConductivity(waterConductivityPosition)
-            goalValue = (  ((conValue/10) + (    (currentPosition-1)    /60))- waterCon) * 10000
-            dataMap.add(strcat('conductivityCalibrated=',num2str(goalValue)));
+            caliCon = (  ((conValue/10) + (    (currentPosition-1)    /60))- waterCon) * 10000
+            conc = (((caliCon-4.5)/121.29)^(1/0.9826)-0.13);
+            dataMap.add(strcat('conductivityCalibrated=',num2str(caliCon)));
+            dataMap.add(strcat('concentration=',num2str(conc)));
              
             %waterConcentrationPosition = (currentPosition-delay) + 1
             %if waterConcentrationPosition > size(waterConcentration)
@@ -50,12 +53,12 @@ for ii=var
             OutputText = strcat(OutputText, ' WaterCon= ');
             OutputText = strcat(OutputText, waterCon);
             OutputText = strcat(OutputText, ' VALUE= ');
-            OutputText = strcat(OutputText, num2str(goalValue));
+            OutputText = strcat(OutputText, num2str(caliCon));
             OutputText = strcat(OutputText, '___');
             output = string({'CON : ' conValue ' Conductivity Calibrated By PH : ' waterCon}); 
             WriteLog(OutputText);
             WriteLog(output);
-            mainOutputText = cat(1,mainOutputText ,string({goalValue}));
+            mainOutputText = cat(1,mainOutputText ,string({caliCon}));
             WriteLog(mainOutputText);
         elseif iterate < delay && ( string(ii(1)) == 'value')
             conValueString = data.(ii{1})(currentPosition:currentPosition);
@@ -71,8 +74,8 @@ for ii=var
         end
     end
 end
-
-fid=fopen('tmp\conductivity_calculation.csv','w');
+newFileLocation = 'tmp\con_calculation.csv';
+fid=fopen(newFileLocation,'w');
 
 for index = 1:size(mainOutputText)
     fprintf(fid, '%i,%s \n', index , mainOutputText{index} );

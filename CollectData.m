@@ -65,8 +65,6 @@ end
 
 allDataMatlab = [];
 
-
-
 for i = 1:1000
 if allData.containsKey(num2str(i))    
     row = char(allData.get(num2str(i)).toString());
@@ -116,16 +114,21 @@ if allData.containsKey(num2str(i))
          graphConductivityCalibrated = strrep( graphConductivityCalibrated , sprintf('\n'),'')
        end
        
+       if contains(keyValuePair(1),'concentration','IgnoreCase',true)
+         graphConcentration = keyValuePair(2)     ; 
+         graphConcentration = strrep( graphConcentration , sprintf('\n'),'')
+       end
+       
     end
     
     if graphTime ~= '0'
            fidGraphTimevsPH = fopen('tmp\graph-time-vs-ph.dat','a');
-           fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-conductivity.dat','a');
+           fidGraphTimevsConductivity = fopen('tmp\graph-time-vs-water-conductivity.dat','a');
            fidGraphTimevsCon = fopen('tmp\graph-time-vs-con.dat','a'); 
            
            fprintf( fidGraphTimevsPH , '%s,%s\n', graphTime, graphPhValue); 
            fprintf( fidGraphTimevsConductivity , '%s,%s\n', graphTime, graphWaterConductivity); 
-           fprintf( fidGraphTimevsCon , '%s,%s\n', graphTime, graphConductivityCalibrated); 
+           fprintf( fidGraphTimevsCon , '%s,%s\n', graphTime, graphConcentration); 
           
            fclose(fidGraphTimevsPH);
            fclose(fidGraphTimevsConductivity);

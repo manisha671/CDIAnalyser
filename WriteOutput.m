@@ -3,5 +3,6 @@ fid=fopen(filePath,'a');
 
 dataToWrite = dataMap.toString();
 fprintf( fid, '%s\n', dataToWrite);
+fclose(fid);
 
 WriteOutput = '';
